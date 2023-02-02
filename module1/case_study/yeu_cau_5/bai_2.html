@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function isPrime(number) {
+        let soUoc = 0;
+        if (number < 2) {
+            return false;
+        }
+        for (i = 0; i <= number; i++) {
+            if (number % i === 0) {
+                soUoc++;
+            }
+        }
+        if (soUoc === 2) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    function countPrime(arr) {
+        let count = 0;
+        for (let i = 0; i < arr.length; i++) {
+            for (let j = 0; j < arr[i].length; j++) {
+                if (isPrime(arr[i][j])) {
+                    count++;
+                }
+            }
+        }
+        return count;
+    }
+
+    function displayPrime(arr) {
+        let arrayNew = [];
+        for (let i = 0; i < arr.length; i++) {
+            for (let j = 0; j < arr[i].length; j++) {
+                if (isPrime(arr[i][j])) {
+                    arrayNew.push(arr[i][j]);
+                }
+            }
+        }
+        return arrayNew;
+    }
+
+    let array = [[1, 2, 3, 4], [5, 6, 7, 8]];
+    document.write("Có bao nhiêu các số nguyên tố là "+ countPrime(array) + "<br>");
+    document.write("Các số nguyên tố là "+ displayPrime(array));
+
+</script>
+</body>
+</html>

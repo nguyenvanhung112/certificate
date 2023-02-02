@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Viết hàm tìm giá trị lớn nhất, nhỏ nhất trong mảng 2 chiều</title>
+</head>
+<body>
+<script>
+    function timMax(arr) {
+        let max = arr[0][0];
+        for (let i = 0; i < arr.length; i++) {
+            for (let j = 0; j < arr[i].length; j++) {
+                if (max < arr[i][j]) {
+                    max = arr[i][j];
+                }
+            }
+        }
+        return max;
+
+    }
+
+    function timMin(arr) {
+        let min = arr[0][0];
+        for (let i = 0; i < arr.length; i++) {
+            for (let j = 0; j < arr[i].length; j++) {
+                if (min > arr[i][j]) {
+                    min = arr[i][j];
+                }
+            }
+        }
+        return min;
+
+    }
+
+    let array = [[1, 2, 3, 4], [5, 6, 7, 8]];
+    document.write("Số lớn nhất là " + timMax(array) + "<br>");
+    document.write("Số nhỏ nhất là " + timMin(array));
+</script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<p id="display"></p>
+<body>
+<script>
+    class Xe {
+        constructor(bienSo, hoTen, CMND, hangXe, phiGui) {
+            this.bienSo = bienSo;
+            this.hoTen = hoTen;
+            this.CMND = CMND;
+            this.hangXe = hangXe;
+            this.phiGui = phiGui;
+        }
+
+        getBienSo() {
+            return this.bienSo;
+        }
+
+        getHoTen() {
+            return this.hoTen;
+        }
+
+        getCMND() {
+            return this.CMND;
+        }
+
+        getHangXe() {
+            return this.hangXe;
+        }
+
+        getPhiGui() {
+            return this.phiGui;
+        }
+    }
+    let arr = [];
+    display();
+
+    function display() {
+        let tableString = "";
+        tableString +=
+            "<table border='1'>" +
+            "<tr><td colspan='3'><button onclick='addNew()'>Thêm xe</button></td><td colspan='3'><button onclick='deleteSequence()'>Xóa xe</button></td></tr>" +
+            "<tr><td>STT</td><td>Biển số</td><td>Họ tên</td><td>CMNN</td><td>Hãng xe</td><td>Phí gửi</td></tr>";
+        for (let i = 0; i < arr.length; i++) {
+            tableString +=
+                "<tr><td>" +
+                (i + 1) +
+                "</td>" +
+                "<td>" +
+                arr[i].getBienSo() +
+                "</td>" +
+                "<td>" +
+                arr[i].getHoTen() +
+                "</td>" +
+                "<td>" +
+                arr[i].getCMND() +
+                "</td>" +
+                "<td>" +
+                arr[i].getHangXe() +
+                "</td>" +
+                "<td>" +
+                arr[i].getPhiGui() +
+                "</td>" +
+                "</tr>";
+        }
+        tableString += "</table>";
+        document.getElementById("display").innerHTML = tableString;
+    }
+
+    function addNew() {
+        let confirmed = true;
+        let cacHang = ["Honda", "Yamaha", "Sym", "Piaggo", "Suzuki", "Ducati"];
+        while (confirmed) {
+            let bienSo = prompt("Nhập biển số");
+            let hoTen = prompt("Nhập họ tên");
+            let CMND = +prompt("Nhập CMND");
+            let hangXe = +prompt(
+                "Chọn hãng xe\n1.Honda\n2.Yamaha\n3.Sym\n4.Piaggio\n5.Suzuki\n6.Ducati\n7.Hãng khác"
+            );
+            if (hangXe == 7) {
+                cacHang.splice(6, 0, prompt("Nhập hãng xe"));
+            }
+            let phiGui = +prompt("Nhập phí gửi đã đóng");
+            if (checkSyntax(bienSo, hoTen, CMND, hangXe, phiGui)) {
+                arr.push(new Xe(bienSo, hoTen, CMND, cacHang[hangXe - 1], phiGui));
+                alert(
+                    "Đã thêm xe: Biển số: " +
+                    bienSo +
+                    "; Họ tên" +
+                    hoTen +
+                    "; CMND: " +
+                    CMND +
+                    "; Hãng xe: " +
+                    hangXe +
+                    "; Phí đã đóng: " +
+                    phiGui
+                );
+                break;
+            } else {
+                confirmed = confirm(
+                    "Thông tin không hợp lệ, vui lòng nhập lại hoặc thoát"
+                );
+            }
+        }
+        display();
+    }
+
+    function deleteSequence() {
+        let bienSo = prompt("Nhập biển số của xe muốn xóa");
+        if (bienSoIndex(bienSo) == -1) {
+            alert("Xe này không có trong danh sách");
+        } else {
+            if (confirm("Bạn có chắc muốn xóa xe " + bienSo + "?")) {
+                arr.splice(bienSoIndex(bienSo), 1);
+                display();
+                alert("Đã xóa xe " + bienSo);
+            } else {
+                alert("Đã hủy");
+            }
+        }
+    }
+
+    function checkSyntax(bienSo, hoTen, CMND, hangXe, phiGui) {
+        if (
+            !(
+                bienSo.length <= 20 &&
+                hoTen.length <= 40 &&
+                hangXe > 0 &&
+                hangXe <= 7 &&
+                bienSoIndex(bienSo) == -1 &&
+                !isNaN(phiGui + CMND)
+            )
+        ) {
+            return false;
+        }
+        return true;
+    }
+
+    function bienSoIndex(bienSo) {
+        for (let i = 0; i < arr.length; i++) {
+            if (arr[i].getBienSo() == bienSo) {
+                return i;
+            }
+        }
+        return -1;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let str = "nguyen"
+    let str1 = str.split("");
+
+    function kiemTra(str2) {
+        let count = 0;
+        for (let i = 0; i < str2.length; i++) {
+            if (str2[i] === " " && str2[i - 1] === " ") {
+                str2.splice(i, 1);
+                i--;
+            }
+        }
+        for (let i = 0; i < str2.length; i++) {
+            if (str2[i]=== " "){
+                count++;
+            }
+        }
+        if (count > 1){
+            let array = [];
+            str2[0] = str2[0].toUpperCase()
+            array.push(str2[0])
+            for (let i = 0; i < str2.length; i++) {
+                if (str2[i] === ' ') {
+                    str2[i + 1] = str2[i + 1].toUpperCase();
+                    array.push(str2[i + 1]);
+                }
+            }
+            return array.join("");
+        } else {
+            return "Chuỗi này có 1 từ";
+        }
+    }
+
+    alert(kiemTra(str1));
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button onclick="them()">Thêm mới</button>
+<button onclick="xoa()">Xóa</button>
+<button onclick="sua()">Sửa</button>
+<p id="display"></p>
+<script>
+    class XeMay {
+        constructor(bienKS, chuSoHuu, hangXe) {
+            this.bienKS = bienKS;
+            this.chuSoHuu = chuSoHuu;
+            this.hangXe = hangXe;
+        }
+
+        setBienKS(bienKS) {
+            this.bienKS = bienKS;
+        }
+
+        getBienKS() {
+            return this.bienKS;
+        }
+
+        setChuSoHuu(chuSoHuu) {
+            this.chuSoHuu = chuSoHuu;
+        }
+
+        getChuSoHuu() {
+            return this.chuSoHuu;
+        }
+
+        setHangXe(hangXe) {
+            this.hangXe = hangXe;
+        }
+
+        getHangXe() {
+            return this.hangXe;
+        }
+    }
+
+    let xe1 = new XeMay("43k1-9999", "Duy", "AB")
+    let xe2 = new XeMay("43k1-9669", "Hùng", "SH")
+    let hienThi = [xe1, xe2];
+
+    function display(danhSach) {
+        let tableString = "<table border=\"1\">\n" +
+            "    <tr>\n" +
+            "        <th>STT</th>\n" +
+            "        <th>Biển kiểm soát</th>\n" +
+            "        <th>Chủ sở hữu</th>\n" +
+            "        <th>Hãng xe</th>\n" +
+            "    </tr>\n";
+        for (let i = 0; i < danhSach.length; i++) {
+            tableString += "<tr>\n" +
+                "<td>" + (i + 1) + "</td>" +
+                "<td>" + danhSach[i].getBienKS() + "</td>" +
+                "<td>" + danhSach[i].getChuSoHuu() + "</td>" +
+                "<td>" + danhSach[i].getHangXe() + "</td>" +
+                "</tr>"
+        }
+        tableString += "</table>";
+        document.getElementById("display").innerHTML = tableString;
+    }
+
+    display(hienThi);
+
+    function them() {
+        let newBienKS = prompt("Nhập vào biển số xe mới");
+        let newChuSoHuu = prompt("Nhập vào tên mới");
+        let newHangXe = prompt("Nhập vào hãng xe mới")
+        let newXeMay = new XeMay(newBienKS, newChuSoHuu, newHangXe);
+        hienThi.push(newXeMay);
+        display(hienThi)
+    }
+
+    function xoa() {
+        let viTri = prompt("Nhập vào vị trí muốn xóa");
+        hienThi.splice(viTri - 1, 1);
+        display(hienThi);
+    }
+
+    function sua() {
+        let viTriSua = prompt("Nhập vào vị trí muốn sửa");
+        let newBienKS = prompt("Nhập vào biển số xe");
+        let newChuSoHuu = prompt("Nhập vào tên");
+        let newHangXe = prompt("Nhập vào hãng xe");
+        let newXeMay = new XeMay(newBienKS, newChuSoHuu, newHangXe);
+        hienThi.splice(viTriSua - 1, 1, newXeMay);
+        display(hienThi);
+    }
+
+
+</script>
+</body>
+</html>

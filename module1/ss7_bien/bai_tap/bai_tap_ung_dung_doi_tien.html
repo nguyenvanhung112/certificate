@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Đổi tiền</title>
+</head>
+<body>
+<table cellpadding="5px">
+    <tr>
+        <th>Amount</th>
+        <th>From Currency</th>
+        <th>To Currency</th>
+    </tr>
+    <tr>
+        <td><input type="number" id="amount"></td>
+        <td><select id="formCurrency">
+            <option value="VietNam">VietNam</option>
+            <option value="USD">USD</option>
+        </select></td>
+        <td><select id="toCurrency">
+            <option value="VietNam">VietNam</option>
+            <option value="USD">USD</option>
+        </select></td>
+        <td>
+            <button type="button" onclick="doiTien()">Convert</button>
+        </td>
+    </tr>
+</table>
+<br>
+<p id="Result"></p>
+<script>
+    function doiTien() {
+        let amount = document.getElementById("amount").value;
+        let form = document.getElementById("formCurrency").value;
+        let to = document.getElementById("toCurrency").value;
+        let reSult;
+        if (form === "USD" && to === "VietNam") {
+            reSult = "Result: " + (amount * 23000) + "Đ"
+        } else if (form === "VietNam" && to === "USD") {
+            reSult = "Result: " + (amount / 23000) + "USD"
+        } else if (form === "VietNam") {
+            reSult = "Result: " + amount + "Đ"
+        } else {
+            reSult = "Result: " + amount + "USĐ"
+        }
+        document.getElementById("Result").innerHTML = reSult;
+    }
+
+</script>
+</body>
+</html>

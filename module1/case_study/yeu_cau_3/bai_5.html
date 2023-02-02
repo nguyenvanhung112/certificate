@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let order;
+    let donGia = [10, 20, 20, 15, 10, 20];
+    let soLuong;
+    let tongTien = 0;
+    do {
+        order = prompt(
+            "1.Cafe," +
+            "2.Cam Vắt," +
+            "3.Cà rốt," +
+            "4.Cà chua," +
+            "5.Nước lọc," +
+            "6.Nước dừa," +
+            "7.Thoát gọi món");
+        if (order == 7) {
+            break;
+        }
+        soLuong = +prompt("Nhập số lượng order");
+        tongTien += soLuong*donGia[order-1];
+    } while (order < 7)
+    document.write("Số tiền phải thanh toán là " + tongTien + "$")
+</script>
+</body>
+</html>

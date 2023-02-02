@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<button onclick="them()">Thêm</button>
+<button onclick="xoa()">Xóa</button>
+<p id="display"></p>
+<body>
+<script>
+    class MayTinh {
+        constructor(maMay, tenMay, hangSanXuat, giaBan) {
+            this.maMay = maMay;
+            this.tenMay = tenMay;
+            this.hangSanXuat = hangSanXuat;
+            this.giaBan = giaBan;
+        }
+
+        setMaMay(maMay) {
+            this.maMay = maMay;
+        }
+
+        getMaMay() {
+            return this.maMay;
+        }
+
+        setTenMay(tenMay) {
+            this.tenMay = tenMay;
+        }
+
+        getTenMay() {
+            return this.tenMay;
+        }
+
+        setHangSanXuat(hangSanXuat) {
+            this.hangSanXuat = hangSanXuat;
+        }
+
+        getHangSanXuat() {
+            return this.hangSanXuat;
+        }
+
+        setGiaBan(giaBan) {
+            this.giaBan = giaBan;
+        }
+
+        getGiaBan() {
+            return this.giaBan;
+        }
+    }
+
+    let mayTinh1 = new MayTinh("H01", "Dell050", "Dell", 1000)
+    let mayTinh2 = new MayTinh("H09", "Asus750", "Asus", 2000)
+    let danhSachMayTinh = [mayTinh1, mayTinh2];
+
+    function display(danhSach) {
+        danhSachMayTinh.sort(function (a, b) {
+            if (a.giaBan > b.giaBan) {
+                return 1;
+            } else if (a.giaBan < b.giaBan) {
+                return -1;
+            } else {
+                return 0;
+            }
+        })
+        let tableString = "<table border=\"1\">\n" +
+            "    <tr>\n" +
+            "        <th>STT</th>\n" +
+            "        <th>Mã máy</th>\n" +
+            "        <th>Tên máy</th>\n" +
+            "        <th>Hãng sản xuất</th>\n" +
+            "        <th>Giá bán</th>\n" +
+            "    </tr>\n";
+        for (let i = 0; i < danhSach.length; i++) {
+            tableString += "<tr>\n" +
+                "<td>" + (i + 1) + "</td>" +
+                "<td>" + danhSach[i].getMaMay() + "</td>" +
+                "<td>" + danhSach[i].getTenMay() + "</td>" +
+                "<td>" + danhSach[i].getHangSanXuat() + "</td>" +
+                "<td>" + danhSach[i].getGiaBan() + "</td>" +
+                "</tr>"
+        }
+        tableString += "</table>";
+        document.getElementById("display").innerHTML = tableString;
+    }
+
+    display(danhSachMayTinh);
+
+    function them() {
+        let newMaMay = prompt("Nhập mã máy");
+        let newTenMay = prompt("Nhập tên máy");
+        let newHangSanXuat = prompt("Nhập hãng sản xuất");
+        let newGiaBan = prompt("Nhập giá bán");
+        let newMayTinh = new MayTinh(newMaMay, newTenMay, newHangSanXuat, newGiaBan);
+        danhSachMayTinh.push(newMayTinh)
+        display(danhSachMayTinh);
+    }
+
+    function xoa() {
+        let viTri;
+        do {
+            viTri = prompt("Nhập vào vị trí muốn xóa");
+            if (isNaN(viTri) || viTri === ' ' || viTri === null || viTri < 0 || viTri > danhSachMayTinh.length) {
+                alert("Nhập lại")
+            } else {
+                danhSachMayTinh.splice(viTri - 1, 1);
+            }
+
+        } while (isNaN(viTri))
+
+        display(danhSachMayTinh);
+
+    }
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let str = "   nGUyen  vAn FuNg";
+    for (let i = 0; i < str.length; i++) {
+        str = str.toLowerCase();
+    }
+    str = str.split("");//Tách chuỗi thành các từ
+    for (let i = 0; i < str.length; i++) {
+        if (i === 0 || str[i - 1] === " ") {
+            str[i] = str[i].toUpperCase();
+        }
+
+    }
+    let str1 = str.join('');
+    document.write(str1 + "<br>");
+    let str2 = str1.split(' ');
+    let maxLength = 0;
+    let maxWord = str2[0];
+    for (let i = 0; i < str2.length; i++) {
+        if (str2[i].length > maxLength) {
+            maxLength = str2[i].length;
+            maxWord = str2[i];
+        }
+
+
+    }
+    document.write("Kí tự dài nhất là " + maxWord + "<br>");
+    document.write("Số lượng kí tự là " + maxLength)
+
+</script>
+</body>
+</html>

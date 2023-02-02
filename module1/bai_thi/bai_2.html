@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let day = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    let arr;
+    if (checkSyntax(prompt("Nhập chuỗi cần định dạng"))) {
+        checkLeapYear();
+    } else {
+        alert("Cần nhập đúng định dạng");
+    }
+    function checkSyntax(string) {
+        arr = string.split("/");
+        return (
+            arr.length == 3 &&
+            !isNaN(+arr[0] + arr[1] + arr[2]) &&
+            arr[0] > 0 &&
+            arr[0] <= day[arr[1] - 1] &&
+            arr[1] > 0 &&
+            arr[1] <= 12 &&
+            arr[2] > 0 &&
+            arr[0].length == 2 &&
+            arr[1].length == 2 &&
+            arr[2].length == 4
+        );
+    }
+    function checkLeapYear() {
+        document.write(
+            arr[2] +
+            (arr[2] % 4 == 0 && !(arr[2] % 100 == 0 && arr[2] % 400 != 0)
+                ? ""
+                : " không") +
+            " là năm nhuận"
+        );
+    }
+</script>
+</body>
+</html>

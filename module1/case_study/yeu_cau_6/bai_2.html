@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nhập từ bàn phím mảng số nguyên gồm n phần tử (n<=50).
+        Hiển thị ra màn hình danh sách các phần tử của mảng,
+        hiện thị ra giá trị trung bình của các phần tử chia hết cho 5 ở vị trí chia hết cho 3</title>
+</head>
+<body>
+<script>
+
+    let number;
+    let array = [];
+    do {
+        number = +prompt("Nhập số phần tử của mảng");
+    }while (number >=50 || isNaN(number))
+    for (let i = 0; i < number; i++) {
+        array[i] = +prompt("Nhập vào phần tử thứ " + i);
+    }
+    let arrayIndex = [];
+    for (let i = 0; i < array.length; i++) {
+        if (array[i] % 5 === 0 && [i] % 3 === 0) {
+            arrayIndex.push(array[i])
+        }
+    }
+    let sum = 0;
+    for (let i = 0; i < arrayIndex.length; i++) {
+        sum += arrayIndex[i];
+    }
+    document.write("Mảng là " + array + "<br>")
+    document.write(arrayIndex + "<br>");
+    document.write("Giá trị trung bình là " + sum / arrayIndex.length);
+
+</script>
+</body>
+</html>

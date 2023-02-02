@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Viết hàm có tham số truyền vào là một mảng ,
+        tìm các số fibonaci có trong mảng(số này đã làm bài tập ở jame).
+        Hàm trả về 1 mảng số fibonaci được tìm thấy trong mảng
+        ( Yêu cầu sắp xếp tăng dần). </title>
+</head>
+<body>
+<script>
+    let numberInput = [1, 5, 6, 13, 9, 12, 8, 0, 5, 1, 21, 13];
+    function fibonacci(number) {
+        let max = number[0];
+        for (let i = 1; i < number.length; i++) {
+            if (number[i] > max) {
+                max = number[i];
+            }
+        }
+        let number1;
+        let number2;
+        let number3;
+        let arrFibonacci = [0, 1]
+        for (let i = 0; i <= max; i++) {
+            number1 = arrFibonacci[i];
+            number2 = arrFibonacci[i + 1];
+            number3 = number1 + number2;
+            arrFibonacci.push(number3);
+        }
+        let fibonacciNumber = [];
+        for (let i = 0; i < number.length; i++) {
+            if (arrFibonacci.includes(number[i])) {
+                fibonacciNumber.push(number[i])
+            }
+        }
+        fibonacciNumber.sort((a, b) => a > b ? 1 : -1);
+        return fibonacciNumber;
+    }
+
+    document.writeln(fibonacci(numberInput).toString());
+
+</script>
+</body>
+</html>
